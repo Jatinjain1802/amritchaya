@@ -1,0 +1,583 @@
+/* 
+   AMRIT CHAYA - Master Design System
+   Architecture: UI/UX Lead - Arpit & Antigravity
+   Description: A high-end, sacred-premium design system blending Vedic soul with modern precision.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Sanskrit&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;600&display=swap');
+
+:root {
+    /* Primary Brand Tones - Refined HSL */
+    --forest-deep:   hsl(120, 38%, 10%);
+    --forest-sacred: hsl(113, 39%, 25%);
+    --gold-temple:   hsl(39, 55%, 51%);
+    --gold-warm:     hsl(37, 70%, 63%);
+    --cream-sacred:  hsl(37, 33%, 96%);
+    --cream-dark:    hsl(42, 36%, 88%);
+    
+    /* Functional Colors */
+    --text-primary:  hsl(120, 24%, 13%);
+    --text-muted:    hsl(120, 10%, 35%);
+    --white:         #ffffff;
+    --black-deep:    hsl(120, 40%, 4%);
+
+    /* Typography Scale (Fluid) */
+    --font-hindi:    'Tiro Devanagari Sanskrit', serif;
+    --font-display:  'Playfair Display', serif;
+    --font-body:     'Inter', sans-serif;
+    --font-serif:    'Cormorant Garamond', serif;
+
+    /* Structural Tokens */
+    --section-gap:   clamp(5rem, 10vw, 12rem);
+    --container-max: 1400px;
+    --radius-sm:     4px;
+    --radius-md:     8px;
+    --radius-lg:     24px;
+    
+    /* Animation Easing */
+    --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* 1. Loading Screen */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: var(--black-deep);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s var(--ease-out), visibility 0.8s;
+}
+
+#loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    text-align: center;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.loader-logo {
+    width: 80px;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 15px var(--gold-temple));
+}
+
+.loader-text {
+    font-family: var(--font-hindi);
+    color: var(--gold-warm);
+    font-size: 2rem;
+    letter-spacing: 0.2em;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; transform: scale(0.98); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+/* 2. Global Reset & Texture */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--cream-sacred);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+/* High-end Film Grain Texture Overlay */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* 3. Layout Framework */
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 5rem);
+}
+
+section {
+    padding: var(--section-gap) 0;
+}
+
+/* 4. Typography Design */
+h1, h2, h3, h4 {
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+.hindi { font-family: var(--font-hindi); }
+
+.eyebrow {
+    font-size: clamp(0.65rem, 1vw, 0.75rem);
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    font-weight: 600;
+    color: var(--gold-temple);
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.display-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-family: var(--font-display);
+    margin-bottom: 2rem;
+}
+
+.serif-desc {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.1rem, 2vw, 1.6rem);
+    color: var(--text-muted);
+}
+
+/* 5. Navigation (Glassmorphism) */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 2.5rem 0;
+    transition: all 0.6s var(--ease-out);
+}
+
+header.scrolled {
+    padding: 1rem 0;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(200, 151, 58, 0.15);
+}
+
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-logo img {
+    height: clamp(40px, 5vw, 55px);
+    transition: transform 0.6s var(--ease-out);
+    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.1));
+}
+
+.nav-logo:hover img { transform: rotate(12deg) scale(1.1); }
+
+.nav-logo .hindi { font-size: 1.6rem; display: block; line-height: 0.8; }
+.nav-logo .latin { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 600; }
+
+.nav-links {
+    display: flex;
+    gap: 3.5rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    position: relative;
+    padding: 0.5rem 0;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.nav-links a:hover { opacity: 1; }
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: var(--gold-temple);
+    transition: all 0.4s var(--ease-out);
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover::after { width: 100%; }
+
+/* 6. Hero Component - Enhanced Immersive */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: var(--black-deep);
+    overflow: hidden;
+}
+
+.hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    transform: scale(1.1);
+    transition: transform 10s linear; /* Ken Burns Effect */
+}
+
+.hero.active .hero-media img {
+    transform: scale(1.2) rotate(1deg);
+}
+
+.hero-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, 
+        rgba(10,21,10,0.3) 0%, 
+        rgba(10,21,10,0.6) 50%, 
+        rgba(10,21,10,0.9) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: var(--white);
+}
+
+.hero-content h1 {
+    font-size: clamp(4rem, 12vw, 10rem);
+    margin-bottom: -1rem;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1.2s var(--ease-out) 0.5s;
+}
+
+.hero.active h1 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 7. Gold Accent Ticker */
+.gold-ticker {
+    background: var(--gold-temple);
+    color: var(--black-deep);
+    padding: 1.5rem 0;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.ticker-track {
+    display: flex;
+    animation: ticker 60s linear infinite;
+    white-space: nowrap;
+}
+
+.ticker-item {
+    font-size: clamp(2rem, 4vw, 4rem);
+    font-family: var(--font-display);
+    margin-right: 6rem;
+    opacity: 0.85;
+}
+
+@keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* 8. Cards & Visual Components (Refined) */
+.grid-system {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2.5rem;
+}
+
+.feature-card {
+    grid-column: span 4;
+    background: var(--white);
+    padding: 4rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(200, 151, 58, 0.08);
+    position: relative;
+    transition: all 0.6s var(--ease-out);
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 2px;
+    background: var(--gold-temple);
+    transform: scaleX(0);
+    transition: transform 0.6s var(--ease-out);
+    transform-origin: left;
+}
+
+.feature-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 40px 80px rgba(26, 58, 26, 0.1);
+}
+
+.feature-card:hover::before {
+    transform: scaleX(1);
+}
+
+.feature-card .icon {
+    font-size: 3rem;
+    margin-bottom: 2.5rem;
+    display: block;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.05));
+}
+
+/* 9. Temple Sections (Overlap Layout) */
+.overlap-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(2rem, 8vw, 10rem);
+    margin-bottom: var(--section-gap);
+}
+
+.overlap-media {
+    flex: 1.2;
+    height: clamp(450px, 45vw, 750px);
+    position: relative;
+}
+
+.overlap-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+}
+
+.overlap-media::before {
+    content: "";
+    position: absolute;
+    inset: 2rem -2rem -2rem 2rem;
+    border: 1px solid var(--gold-temple);
+    z-index: -1;
+    opacity: 0.5;
+}
+
+.overlap-text {
+    flex: 1;
+}
+
+/* 10. Buttons - Premium State */
+.cta-btn {
+    padding: 1.2rem 3.5rem;
+    background: var(--gold-temple);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    display: inline-block;
+    transition: all 0.5s var(--ease-out);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--forest-deep);
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s var(--ease-out);
+}
+
+.cta-btn:hover {
+    color: var(--white);
+    letter-spacing: 0.4em;
+}
+
+.cta-btn:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* 11. Reveal Animations - Higher Precision */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s var(--ease-out), transform 1s var(--ease-out);
+}
+
+[data-reveal].active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 12. Footer Enhancements */
+footer {
+    padding: 10rem 0 4rem;
+    background-color: var(--black-deep);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: "अमृत छाया";
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-hindi);
+    font-size: 30vw;
+    color: rgba(255, 255, 255, 0.02);
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* 13. Mobile Navigation & Toggle */
+.mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2000;
+    padding: 10px;
+}
+
+.mobile-toggle span {
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--gold-temple);
+    transition: all 0.4s var(--ease-out);
+    transform-origin: center;
+}
+
+/* Hamburger Animation */
+.mobile-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.mobile-toggle.active span:nth-child(2) { opacity: 0; }
+.mobile-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+.mobile-nav {
+    position: fixed;
+    inset: 0;
+    background: var(--black-deep);
+    z-index: 1500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%);
+    transition: transform 0.6s var(--ease-out);
+}
+
+.mobile-nav.active { transform: translateX(0); }
+
+.mobile-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.mobile-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s var(--ease-out);
+}
+
+.mobile-nav.active .mobile-links a {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation for mobile links */
+.mobile-nav.active .mobile-links a:nth-child(1) { transition-delay: 0.2s; }
+.mobile-nav.active .mobile-links a:nth-child(2) { transition-delay: 0.3s; }
+.mobile-nav.active .mobile-links a:nth-child(3) { transition-delay: 0.4s; }
+.mobile-nav.active .mobile-links a:nth-child(4) { transition-delay: 0.5s; }
+.mobile-nav.active .mobile-links a:nth-child(5) { transition-delay: 0.6s; }
+
+.mobile-footer {
+    position: absolute;
+    bottom: 4rem;
+    text-align: center;
+    width: 100%;
+    color: var(--gold-warm);
+    opacity: 0.6;
+}
+
+/* Responsive Overrides */
+@media (max-width: 1024px) {
+    :root {
+        --section-gap: 6rem;
+    }
+
+    .desktop-only { display: none; }
+    .nav-links { display: none; }
+    .mobile-toggle { display: flex; }
+
+    .grid-system { grid-template-columns: 1fr; gap: 2rem; }
+    .feature-card { grid-column: span 12; padding: 2.5rem; }
+    
+    .overlap-row { flex-direction: column !important; text-align: center; }
+    .overlap-media { width: 100%; height: 350px; }
+    .overlap-media::before { display: none; }
+
+    .hero-content h1 { font-size: 4.5rem; }
+    .display-title { font-size: 2.5rem; }
+    
+    footer .grid-system > div {
+        grid-column: span 12 !important;
+        text-align: center !important;
+        margin-bottom: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 { font-size: 3.5rem; }
+    .nav-logo .hindi { font-size: 1.2rem; }
+    .container { padding: 0 1.5rem; }
+    .cta-btn { width: 100%; text-align: center; }
+}
