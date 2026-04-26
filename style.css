@@ -154,7 +154,17 @@ h1, h2, h3, h4 {
     color: var(--text-muted);
 }
 
-/* 5. Navigation (Glassmorphism) */
+/* Section intro block — centered heading group above card grids */
+.section-intro {
+    text-align: center;
+    margin-bottom: clamp(3rem, 6vw, 6rem); /* Fluid so it tightens on mobile */
+}
+
+/* Mobile nav CTA margin */
+.mobile-cta {
+    margin-top: 2rem;
+}
+
 header {
     position: fixed;
     top: 0;
@@ -181,21 +191,28 @@ header.scrolled {
 .nav-logo {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
+    gap: clamp(0.6rem, 2vw, 1.2rem); /* Shrinks on narrow screens */
     text-decoration: none;
     color: inherit;
 }
 
 .nav-logo img {
-    height: clamp(40px, 5vw, 55px);
+    /* clamp(min, preferred, max)
+       - min: 36px  → absolute smallest the logo can be
+       - preferred: 8vw → scales with viewport (444px screen → 35px, 555px → 44px, 1024px → 82px)
+       - max: 52px  → caps on desktop so it stays elegant */
+    height: clamp(36px, 8vw, 52px);
+    width: auto;           /* Always maintain aspect ratio */
+    flex-shrink: 0;        /* Prevent the image being squished by flex layout */
     transition: transform 0.6s var(--ease-out);
     filter: drop-shadow(0 2px 10px rgba(0,0,0,0.1));
 }
 
 .nav-logo:hover img { transform: rotate(12deg) scale(1.1); }
 
-.nav-logo .hindi { font-size: 1.6rem; display: block; line-height: 0.8; }
-.nav-logo .latin { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 600; }
+/* Logo text — fluid sizes using clamp */
+.nav-logo .hindi { font-size: clamp(1.1rem, 4vw, 1.6rem); display: block; line-height: 0.9; }
+.nav-logo .latin { font-size: clamp(0.5rem, 1.2vw, 0.6rem); letter-spacing: 0.4em; text-transform: uppercase; font-weight: 600; }
 
 .nav-links {
     display: flex;
@@ -448,7 +465,7 @@ header.scrolled {
 
 /* 12. Footer Enhancements */
 footer {
-    padding: 10rem 0 4rem;
+    padding: clamp(5rem, 10vw, 10rem) 0 4rem;
     background-color: var(--black-deep);
     color: var(--white);
     position: relative;
@@ -466,6 +483,64 @@ footer::before {
     color: rgba(255, 255, 255, 0.02);
     white-space: nowrap;
     pointer-events: none;
+}
+
+/* Footer Grid Layout */
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    gap: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: clamp(3rem, 6vw, 6rem);
+}
+
+.footer-hindi {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 1rem;
+}
+
+.footer-tagline {
+    opacity: 0.6;
+    font-size: 0.9rem;
+}
+
+.footer-eyebrow {
+    color: var(--white);
+}
+
+.footer-list {
+    list-style: none;
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+.footer-list li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-list a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.footer-list a:hover {
+    opacity: 1;
+}
+
+.footer-connect {
+    text-align: right;
+}
+
+.footer-email {
+    font-size: clamp(0.95rem, 2vw, 1.2rem);
+    color: var(--gold-warm);
+    word-break: break-all;
+}
+
+.footer-jai {
+    margin-top: 1.5rem;
+    font-weight: 700;
 }
 
 /* 13. Mobile Navigation & Toggle */
@@ -548,36 +623,198 @@ footer::before {
     opacity: 0.6;
 }
 
-/* Responsive Overrides */
+/* ==========================================================
+   HOTEL CARD COMPONENTS
+   ========================================================== */
+
+/* Hotels section header — side-by-side heading + CTA button */
+.hotels-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 6rem;
+    gap: 2rem;
+    flex-wrap: wrap; /* On narrow screens, wraps the button below the heading */
+}
+
+/* The outline variant of the CTA button (used for "View All Hotels") */
+.cta-outline {
+    background: transparent;
+    color: var(--gold-temple);
+    border: 1px solid var(--gold-temple);
+    white-space: nowrap;  /* Prevents button text from line-wrapping mid-word */
+    flex-shrink: 0;       /* Prevents it from being squished by the heading */
+}
+
+.cta-outline:hover {
+    color: var(--white);
+}
+
+/* Hotel cards take up half the grid (6 of 12 columns) */
+.hotel-card {
+    grid-column: span 6;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* The image wrapper inside hotel cards */
+.card-img-wrap {
+    height: clamp(260px, 28vw, 400px); /* Fluid height so image never crunches */
+    overflow: hidden;
+}
+
+.card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease-out);
+}
+
+.hotel-card:hover .card-img-wrap img {
+    transform: scale(1.05); /* Subtle Ken-Burns on hover */
+}
+
+.card-body {
+    padding: clamp(1.5rem, 3vw, 3rem); /* Fluid inner padding */
+}
+
+.card-title {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    margin-bottom: 1rem;
+}
+
+.card-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.card-price {
+    margin-top: 2rem;
+    font-weight: 700;
+    color: var(--gold-temple);
+}
+
+/* ==========================================================
+   RESPONSIVE OVERRIDES
+   
+   Strategy: Mobile-first thinking with max-width breakpoints.
+   Think of it like TV channels — if screen is ≤1024px, channel 1.
+   If ≤768px, channel 2. If ≤480px, channel 3.
+   Each channel adds/overrides styles for that screen width.
+   ========================================================== */
+
+/* ── BREAKPOINT 1: Tablet & Small Laptop (≤1024px) ────────── */
 @media (max-width: 1024px) {
     :root {
+        /* Reduce the big vertical gaps on tablet */
         --section-gap: 6rem;
     }
 
-    .desktop-only { display: none; }
-    .nav-links { display: none; }
+    /* Hide desktop nav, show hamburger */
+    .desktop-only  { display: none; }
+    .nav-links     { display: none; }
     .mobile-toggle { display: flex; }
 
-    .grid-system { grid-template-columns: 1fr; gap: 2rem; }
-    .feature-card { grid-column: span 12; padding: 2.5rem; }
-    
-    .overlap-row { flex-direction: column !important; text-align: center; }
-    .overlap-media { width: 100%; height: 350px; }
-    .overlap-media::before { display: none; }
+    /* Pooja cards: 3-col grid → single column stack */
+    .grid-system   { grid-template-columns: 1fr; gap: 2rem; }
+    .feature-card  { grid-column: span 12; padding: 2.5rem; }
 
-    .hero-content h1 { font-size: 4.5rem; }
-    .display-title { font-size: 2.5rem; }
-    
-    footer .grid-system > div {
-        grid-column: span 12 !important;
-        text-align: center !important;
-        margin-bottom: 3rem;
+    /* Hotel cards: from 6/12 → full width on tablet */
+    .hotel-card    { grid-column: span 12; }
+
+    /* Hotels header: flex-wrap kicks in, button moves below heading */
+    .hotels-header { margin-bottom: 3rem; }
+
+    /* Overlap sections: side-by-side → stacked */
+    .overlap-row            { flex-direction: column !important; text-align: center; }
+    .overlap-media          { width: 100%; height: clamp(300px, 50vw, 450px); }
+    .overlap-media::before  { display: none; } /* Hide decorative border offset */
+
+    /* Footer: 4-col grid → 2-col grid on tablet */
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
     }
+
+    /* Brand spans full width, Connect section left-aligns */
+    .footer-brand   { grid-column: span 2; }
+    .footer-connect { text-align: left; }
 }
 
+/* ── BREAKPOINT 2: Mobile Phone (≤768px) ──────────────────── */
+@media (max-width: 768px) {
+
+    /* Nav logo text slightly smaller */
+    .nav-logo .hindi { font-size: 1.4rem; }
+
+    /* Hero: make sure the big Hindi h1 doesn't overflow */
+    .hero-content h1 {
+        font-size: clamp(3rem, 15vw, 5rem);
+    }
+
+    /* Hero descriptive paragraph: remove fixed max-width */
+    .hero-content p {
+        max-width: 100% !important;
+    }
+
+    /* Hero CTA button: full-width on mobile */
+    .hero-content .cta-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Ticker: smaller text to avoid huge scroll on phone */
+    .ticker-item { font-size: clamp(1.4rem, 5vw, 2.5rem); }
+
+    /* Hotels header: stack vertically, button full-width */
+    .hotels-header {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 2.5rem;
+    }
+
+    .hotels-header .cta-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Footer: single column stacking on phone */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .footer-brand   { grid-column: span 1; }
+    .footer-connect { text-align: left; }
+}
+
+/* ── BREAKPOINT 3: Small Phone (≤480px) ───────────────────── */
 @media (max-width: 480px) {
-    .hero-content h1 { font-size: 3.5rem; }
+    /* Tighten container edges on very small phones */
+    .container { padding: 0 1.2rem; }
+
+    /* Logo: compact */
     .nav-logo .hindi { font-size: 1.2rem; }
-    .container { padding: 0 1.5rem; }
-    .cta-btn { width: 100%; text-align: center; }
+    .nav-logo .latin { display: none; } /* Hide sub-label, too cramped */
+
+    /* Section headings */
+    .display-title { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+
+    /* Feature cards: tighter padding on very small screens */
+    .feature-card  { padding: 1.8rem; }
+
+    /* Card image heights */
+    .card-img-wrap { height: 220px; }
+
+    /* Card body padding */
+    .card-body     { padding: 1.5rem; }
+
+    /* All buttons full width on tiny phones */
+    .cta-btn       { width: 100%; text-align: center; }
+
+    /* Tighten overlap sections */
+    .overlap-text  { text-align: center; }
+    .overlap-text .cta-btn { margin-top: 2rem; }
+
+    /* Footer */
+    .footer-grid   { gap: 2rem; }
 }

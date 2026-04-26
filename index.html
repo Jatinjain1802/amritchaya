@@ -57,7 +57,7 @@
                 <a href="#temple">Temple</a>
                 <a href="#hotels">Hotels</a>
                 <a href="#product">Product</a>
-                <a href="#contact" class="cta-btn" style="margin-top: 2rem;">Contact Us</a>
+                <a href="#contact" class="cta-btn mobile-cta">Contact Us</a>
             </nav>
             <div class="mobile-footer">
                 <p class="hindi">अमृत छाया</p>
@@ -103,7 +103,7 @@
     <!-- The Rituals (Pooja) -->
     <section id="pooja">
         <div class="container">
-            <div style="text-align: center; margin-bottom: 6rem;" data-reveal>
+            <div class="section-intro" data-reveal>
                 <span class="eyebrow">Rituals & Offerings</span>
                 <h2 class="display-title">Connect with the Divine</h2>
                 <p class="serif-desc">Experience the Bhasma Aarti and Rudra Abhishek with authentic Vedic Pandits.</p>
@@ -156,35 +156,35 @@
     <!-- The Heritage (Hotels) -->
     <section id="hotels">
         <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 6rem;" data-reveal>
-                <div style="max-width: 600px;">
+            <div class="hotels-header" data-reveal>
+                <div>
                     <span class="eyebrow">Premium Stays</span>
                     <h2 class="display-title">Rest in Heritage</h2>
                 </div>
-                <a href="#" class="cta-btn" style="background: transparent; color: var(--gold-temple); border: 1px solid var(--gold-temple);">View All Hotels</a>
+                <a href="#" class="cta-btn cta-outline">View All Hotels</a>
             </div>
 
             <div class="grid-system">
-                <div class="feature-card" style="grid-column: span 6; padding: 0; overflow: hidden;" data-reveal>
-                    <div style="height: 400px;">
-                        <img src="img/hotel.png" alt="Heritage Suite" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="feature-card hotel-card" data-reveal>
+                    <div class="card-img-wrap">
+                        <img src="img/hotel.png" alt="Heritage Suite">
                     </div>
-                    <div style="padding: 3rem;">
-                        <span class="eyebrow" style="margin-bottom: 0.5rem;">Elite Category</span>
-                        <h3 class="display-title" style="font-size: 2rem; margin-bottom: 1rem;">Royal Heritage Suite</h3>
-                        <p style="font-size: 0.9rem; color: var(--text-muted);">Luxury rooms overlooking the ancient shikhara of the temple. Modern comfort meets Vedic architecture.</p>
-                        <p style="margin-top: 2rem; font-weight: 700; color: var(--gold-temple);">FROM ₹ 5,500 / NIGHT</p>
+                    <div class="card-body">
+                        <span class="eyebrow">Elite Category</span>
+                        <h3 class="display-title card-title">Royal Heritage Suite</h3>
+                        <p class="card-desc">Luxury rooms overlooking the ancient shikhara of the temple. Modern comfort meets Vedic architecture.</p>
+                        <p class="card-price">FROM ₹ 5,500 / NIGHT</p>
                     </div>
                 </div>
-                <div class="feature-card" style="grid-column: span 6; padding: 0; overflow: hidden;" data-reveal>
-                    <div style="height: 400px;">
-                        <img src="img/hotel.png" alt="Pilgrim Comfort" style="width: 100%; height: 100%; object-fit: cover; filter: sepia(0.3);">
+                <div class="feature-card hotel-card" data-reveal>
+                    <div class="card-img-wrap">
+                        <img src="img/hotel.png" alt="Pilgrim Comfort" style="filter: sepia(0.3);">
                     </div>
-                    <div style="padding: 3rem;">
-                        <span class="eyebrow" style="margin-bottom: 0.5rem;">Pilgrim Choice</span>
-                        <h3 class="display-title" style="font-size: 2rem; margin-bottom: 1rem;">Sacred Comfort Room</h3>
-                        <p style="font-size: 0.9rem; color: var(--text-muted);">Quiet, clean, and spiritually oriented stays located in the peaceful vicinity of the Mahakal corridor.</p>
-                        <p style="margin-top: 2rem; font-weight: 700; color: var(--gold-temple);">FROM ₹ 2,800 / NIGHT</p>
+                    <div class="card-body">
+                        <span class="eyebrow">Pilgrim Choice</span>
+                        <h3 class="display-title card-title">Sacred Comfort Room</h3>
+                        <p class="card-desc">Quiet, clean, and spiritually oriented stays located in the peaceful vicinity of the Mahakal corridor.</p>
+                        <p class="card-price">FROM ₹ 2,800 / NIGHT</p>
                     </div>
                 </div>
             </div>
@@ -210,33 +210,33 @@
     </section>
 
     <!-- Footer -->
-    <footer style="padding: 10rem 0 4rem; background-color: var(--black-deep); color: var(--white);">
+    <footer id="contact">
         <div class="container">
-            <div class="grid-system" style="border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 6rem;">
-                <div style="grid-column: span 4;">
-                    <h2 class="hindi" style="font-size: 2.5rem; margin-bottom: 1rem;">अमृत छाया</h2>
-                    <p style="opacity: 0.6; font-size: 0.9rem;">Your sacred companion in the city of Mahakal. Built on trust, tradition, and timeless wisdom.</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2 class="hindi footer-hindi">अमृत छाया</h2>
+                    <p class="footer-tagline">Your sacred companion in the city of Mahakal. Built on trust, tradition, and timeless wisdom.</p>
                 </div>
-                <div style="grid-column: span 2;">
-                    <h4 class="eyebrow" style="color: var(--white);">Pilgrimage</h4>
-                    <ul style="list-style: none; opacity: 0.7; font-size: 0.9rem;">
-                        <li style="margin-bottom: 0.8rem;"><a href="#pooja" style="color: inherit; text-decoration: none;">Rituals</a></li>
-                        <li style="margin-bottom: 0.8rem;"><a href="#temple" style="color: inherit; text-decoration: none;">Temples</a></li>
-                        <li style="margin-bottom: 0.8rem;"><a href="#hotels" style="color: inherit; text-decoration: none;">Stays</a></li>
+                <div class="footer-col">
+                    <h4 class="eyebrow footer-eyebrow">Pilgrimage</h4>
+                    <ul class="footer-list">
+                        <li><a href="#pooja">Rituals</a></li>
+                        <li><a href="#temple">Temples</a></li>
+                        <li><a href="#hotels">Stays</a></li>
                     </ul>
                 </div>
-                <div style="grid-column: span 2;">
-                    <h4 class="eyebrow" style="color: var(--white);">Support</h4>
-                    <ul style="list-style: none; opacity: 0.7; font-size: 0.9rem;">
-                        <li style="margin-bottom: 0.8rem;">About Us</li>
-                        <li style="margin-bottom: 0.8rem;">Privacy Policy</li>
-                        <li style="margin-bottom: 0.8rem;">Contact</li>
+                <div class="footer-col">
+                    <h4 class="eyebrow footer-eyebrow">Support</h4>
+                    <ul class="footer-list">
+                        <li>About Us</li>
+                        <li>Privacy Policy</li>
+                        <li>Contact</li>
                     </ul>
                 </div>
-                <div style="grid-column: span 4; text-align: right;">
-                    <h4 class="eyebrow" style="color: var(--white);">Connect</h4>
-                    <p style="font-size: 1.2rem; color: var(--gold-warm);">namaste@amritchaya.in</p>
-                    <p style="margin-top: 1.5rem; font-weight: 700;">JAI MAHAKAL 🙏</p>
+                <div class="footer-connect">
+                    <h4 class="eyebrow footer-eyebrow">Connect</h4>
+                    <p class="footer-email">namaste@amritchaya.in</p>
+                    <p class="footer-jai">JAI MAHAKAL 🙏</p>
                 </div>
             </div>
             <div style="padding-top: 4rem; text-align: center; opacity: 0.3; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.3em;">
