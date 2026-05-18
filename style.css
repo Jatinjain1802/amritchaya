@@ -457,6 +457,9 @@
     transition: all 0.3s;
   }
   .pooja-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(31,77,54,0.12); }
+  .pooja-img-container { height: 180px; overflow: hidden; }
+  .pooja-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .pooja-card:hover .pooja-img { transform: scale(1.05); }
   .pooja-card-header {
     background: var(--forest);
     padding: 1.5rem;
