@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spiritual Tours - Amrit Chaya Foundation</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .page-hero {
+    padding-top: 120px;
+    min-height: 45vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; background: var(--forest); color: var(--ivory);
+    position: relative; overflow: hidden;
+  }
+  .page-hero-title { font-family: 'Cinzel', serif; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 0.5rem; position: relative; z-index: 2; color: var(--ivory); }
+  .page-hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: clamp(1rem, 2vw, 1.4rem); font-style: italic; color: var(--gold); position: relative; z-index: 2; }
+  .hero-img-bg { position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%; opacity: 0.35; mix-blend-mode: luminosity; }
+  
+  .booking-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; }
+  .booking-modal-content { background: var(--ivory); padding: 3rem; border-radius: 4px; max-width: 500px; width: 90%; position: relative; border: 2px solid var(--gold); }
+  .close-modal { position: absolute; top: 1rem; right: 1rem; cursor: pointer; font-size: 1.5rem; color: var(--forest); background: none; border: none; }
+  .form-group { margin-bottom: 1.25rem; text-align: left; }
+  .form-group label { display: block; font-size: 0.8rem; margin-bottom: 0.4rem; color: var(--forest); font-weight: 500; }
+  .form-group input, .form-group select { width: 100%; padding: 0.75rem; border: 1px solid rgba(200,164,93,0.5); border-radius: 2px; background: rgba(250,247,242,0.5); font-family: 'Poppins', sans-serif; font-size: 0.85rem; }
+  .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--gold); background: var(--ivory); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 38 C20 38 6 28 6 18 C6 11.4 12.4 6 20 6 C27.6 6 34 11.4 34 18 C34 28 20 38 20 38Z" fill="rgba(31,77,54,0.3)" stroke="#C8A45D" stroke-width="1"/>
+      <path d="M20 6 L20 36" stroke="#C8A45D" stroke-width="1" stroke-dasharray="2 2"/>
+      <path d="M20 14 C16 10 10 12 9 16 C14 15 18 17 20 21 C22 17 26 15 31 16 C30 12 24 10 20 14Z" fill="#C8A45D" opacity="0.8"/>
+      <path d="M20 22 C17 19 12 20 11 23 C15 22 18 24 20 27 C22 24 25 22 29 23 C28 20 23 19 20 22Z" fill="#C8A45D" opacity="0.6"/>
+      <circle cx="20" cy="36" r="2" fill="#C8A45D"/>
+    </svg>
+    <div>
+      <div class="nav-logo-text">अमृत छाया</div>
+      <span class="nav-logo-sub">Amrit Chaya Foundation</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="pooja.html">Poojas</a></li>
+    <li><a href="tours.html" style="color: var(--gold);">Yatra</a></li>
+    <li><a href="goshala.html">Goshala</a></li>
+    <li><a href="about.html">Foundation</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openBookingModal('Spiritual Tour')">Book Yatra</button>
+</nav>
+
+<section class="page-hero">
+  <img src="images/tours_hero_bg.png" class="hero-img-bg" alt="Spiritual Tours">
+  <div>
+    <h1 class="page-hero-title">Spiritual Tours</h1>
+    <p class="page-hero-subtitle">Curated Yatra Packages</p>
+  </div>
+</section>
+
+<section class="tours-section" style="padding-top: 4rem;">
+  <div class="section-inner">
+    <div class="section-label" style="justify-content: center; text-align: center;">Yatra</div>
+    <h2 class="section-title" style="text-align: center;">Spiritual Tours & Packages</h2>
+    <div class="gold-divider" style="margin: 1.5rem auto;"></div>
+    <p class="section-desc" style="text-align: center; margin: 0 auto; max-width: 700px;">Embark on a divine journey with Amrit Chaya Foundation. We handle all logistics including hotels, meals, transport, and special pandit-guided darshan.</p>
+    
+    <div class="tours-grid">
+      <!-- Tour Cards -->
+      <div class="tour-card">
+        <div class="tour-img">
+          <span class="tour-days-badge">1 Day</span>
+          🛕
+        </div>
+        <div class="tour-info">
+          <div class="tour-name">Ujjain Darshan</div>
+          <p class="tour-desc">Complete darshan of Mahakaleshwar, Kal Bhairav, Harsiddhi & all major temples.</p>
+          <div class="tour-meta">
+            <div class="tour-meta-item"><span class="tour-meta-icon">🚐</span> AC vehicle included</div>
+            <div class="tour-meta-item"><span class="tour-meta-icon">🍱</span> Prasad & meals</div>
+            <div class="tour-meta-item"><span class="tour-meta-icon">🙏</span> Personal pandit guide</div>
+          </div>
+          <div class="tour-price">₹2,499 <small>per person</small></div>
+          <button class="btn-book" style="width:auto; padding: 0.6rem 1.5rem;" onclick="openBookingModal('Ujjain Darshan')">Book Package</button>
+        </div>
+      </div>
+      <div class="tour-card">
+        <div class="tour-img">
+          <span class="tour-days-badge">3 Days</span>
+          🗺️
+        </div>
+        <div class="tour-info">
+          <div class="tour-name">84 Mahadev Yatra</div>
+          <p class="tour-desc">Complete 84 Mahadev parikrama in and around Ujjain — a rare spiritual achievement.</p>
+          <div class="tour-meta">
+            <div class="tour-meta-item"><span class="tour-meta-icon">🏨</span> 2 nights hotel</div>
+            <div class="tour-meta-item"><span class="tour-meta-icon">🍱</span> All meals included</div>
+            <div class="tour-meta-item"><span class="tour-meta-icon">📷</span> Photography allowed</div>
+          </div>
+          <div class="tour-price">₹7,999 <small>per person</small></div>
+          <button class="btn-book" style="width:auto; padding: 0.6rem 1.5rem;" onclick="openBookingModal('84 Mahadev Yatra')">Book Package</button>
+        </div>
+      </div>
+      <div class="tour-card">
+        <div class="tour-img">
+          <span class="tour-days-badge">2 Days</span>
+          🌊
+        </div>
+        <div class="tour-info">
+          <div class="tour-name">Omkareshwar Trip</div>
+          <p class="tour-desc">Sacred island temple of Omkareshwar Jyotirlinga with Narmada darshan & boat ride.</p>
+          <div class="tour-meta">
+            <div class="tour-meta-item"><span class="tour-meta-icon">🚐</span> AC vehicle included</div>
+            <div class="tour-meta-item"><span class="tour-meta-icon">🏨</span> 1 night stay</div>
+            <div class="tour-meta-item"><span class="tour-meta-icon">🍱</span> All meals</div>
+          </div>
+          <div class="tour-price">₹4,999 <small>per person</small></div>
+          <button class="btn-book" style="width:auto; padding: 0.6rem 1.5rem;" onclick="openBookingModal('Omkareshwar Trip')">Book Package</button>
+        </div>
+      </div>
+      <div class="tour-card">
+        <div class="tour-img">
+          <span class="tour-days-badge">12 Days</span>
+          ✨
+        </div>
+        <div class="tour-info">
+          <div class="tour-name">12 Jyotirlinga Yatra</div>
+          <p class="tour-desc">Complete pilgrimage to all 12 Jyotirlingas across India — the ultimate Shiv darshan.</p>
+          <div class="tour-meta">
+            <div class="tour-meta-item"><span class="tour-meta-icon">✈️</span> Air + road combo</div>
+            <div class="tour-meta-item"><span class="tour-meta-icon">🏨</span> Premium hotels</div>
+            <div class="tour-meta-item"><span class="tour-meta-icon">🙏</span> Full pandit seva</div>
+          </div>
+          <div class="tour-price">₹45,000 <small>per person</small></div>
+          <button class="btn-book" style="width:auto; padding: 0.6rem 1.5rem;" onclick="openBookingModal('12 Jyotirlinga Yatra')">Book Package</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="bookingModal" class="booking-modal">
+  <div class="booking-modal-content">
+    <button class="close-modal" onclick="closeBookingModal()">×</button>
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <h3 id="bookingItemName" style="font-family: 'Cinzel', serif; color: var(--forest); font-size: 1.5rem;">Book Package</h3>
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Fill out your details and our Yatra coordinator will contact you.</p>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('Booking requested! Our team will contact you shortly.'); closeBookingModal();">
+      <input type="hidden" id="poojaSelection" name="poojaSelection">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="Enter full name" required>
+      </div>
+      <div class="form-group">
+        <label>Number of Travelers</label>
+        <input type="number" min="1" placeholder="Enter traveler count" required>
+      </div>
+      <div class="form-group">
+        <label>WhatsApp Number</label>
+        <input type="tel" placeholder="+91 XXXXX XXXXX" required>
+      </div>
+      <div class="form-group">
+        <label>Preferred Travel Date</label>
+        <input type="date" required>
+      </div>
+      <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem; padding: 1rem;">Confirm Request</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div style="font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold); letter-spacing: 0.05em; margin-bottom: 0.5rem;">अमृत छाया</div>
+        <p class="footer-tagline">"Spiritual Foundation for Seva, Darshan & Divine Experiences"<br>Ujjain, Madhya Pradesh</p>
+      </div>
+      <div>
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="pooja.html">Pooja Booking</a></li>
+          <li><a href="tours.html">Spiritual Tours</a></li>
+          <li><a href="goshala.html">Goshala Seva</a></li>
+          <li><a href="donate.html">Donation</a></li>
+          <li><a href="donate.html">Annadan Seva</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Foundation</div>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="blogs.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <ul class="footer-links" style="gap: 0.75rem;">
+          <li style="font-size: 0.8rem; color: rgba(250,247,242,0.4);">📍 Ujjain, Madhya Pradesh</li>
+          <li style="font-size: 0.8rem; color: rgba(250,247,242,0.4);">📧 info@amritchaya.org</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2024 Amrit Chaya Foundation. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<button class="whatsapp-fab" title="WhatsApp">💬</button>
+
+<script>
+  function openBookingModal(itemName) {
+    const modal = document.getElementById('bookingModal');
+    if (modal) {
+      modal.style.display = 'flex';
+      document.getElementById('bookingItemName').innerText = 'Book: ' + itemName;
+      document.getElementById('poojaSelection').value = itemName;
+    }
+  }
+  function closeBookingModal() {
+    const modal = document.getElementById('bookingModal');
+    if (modal) {
+      modal.style.display = 'none';
+    }
+  }
+</script>
+</body>
+</html>

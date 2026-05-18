@@ -1,820 +1,881 @@
-/* 
-   AMRIT CHAYA - Master Design System
-   Architecture: UI/UX Lead - Arpit & Antigravity
-   Description: A high-end, sacred-premium design system blending Vedic soul with modern precision.
-*/
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --forest: #1F4D36;
+    --forest-light: #2a6649;
+    --gold: #C8A45D;
+    --gold-light: #e2c07a;
+    --saffron: #D97706;
+    --ivory: #FAF7F2;
+    --beige: #E8DDCC;
+    --beige-dark: #d4c4aa;
+    --text-dark: #1a1208;
+    --text-mid: #3d2e10;
+    --text-muted: #7a6a50;
+  }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Sanskrit&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;600&display=swap');
+  html { scroll-behavior: smooth; }
 
-:root {
-    /* Primary Brand Tones - Refined HSL */
-    --forest-deep:   hsl(120, 38%, 10%);
-    --forest-sacred: hsl(113, 39%, 25%);
-    --gold-temple:   hsl(39, 55%, 51%);
-    --gold-warm:     hsl(37, 70%, 63%);
-    --cream-sacred:  hsl(37, 33%, 96%);
-    --cream-dark:    hsl(42, 36%, 88%);
-    
-    /* Functional Colors */
-    --text-primary:  hsl(120, 24%, 13%);
-    --text-muted:    hsl(120, 10%, 35%);
-    --white:         #ffffff;
-    --black-deep:    hsl(120, 40%, 4%);
-
-    /* Typography Scale (Fluid) */
-    --font-hindi:    'Tiro Devanagari Sanskrit', serif;
-    --font-display:  'Playfair Display', serif;
-    --font-body:     'Inter', sans-serif;
-    --font-serif:    'Cormorant Garamond', serif;
-
-    /* Structural Tokens */
-    --section-gap:   clamp(5rem, 10vw, 12rem);
-    --container-max: 1400px;
-    --radius-sm:     4px;
-    --radius-md:     8px;
-    --radius-lg:     24px;
-    
-    /* Animation Easing */
-    --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
-    --ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1);
-}
-
-/* 1. Loading Screen */
-#loader {
-    position: fixed;
-    inset: 0;
-    background: var(--black-deep);
-    z-index: 10000;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.8s var(--ease-out), visibility 0.8s;
-}
-
-#loader.fade-out {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.loader-content {
-    text-align: center;
-    animation: pulse 2s infinite ease-in-out;
-}
-
-.loader-logo {
-    width: 80px;
-    margin-bottom: 2rem;
-    filter: drop-shadow(0 0 15px var(--gold-temple));
-}
-
-.loader-text {
-    font-family: var(--font-hindi);
-    color: var(--gold-warm);
-    font-size: 2rem;
-    letter-spacing: 0.2em;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 0.6; transform: scale(0.98); }
-    50% { opacity: 1; transform: scale(1); }
-}
-
-/* 2. Global Reset & Texture */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-}
-
-html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-}
-
-body {
-    background-color: var(--cream-sacred);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    line-height: 1.8;
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--ivory);
+    color: var(--text-dark);
     overflow-x: hidden;
-}
+  }
 
-/* High-end Film Grain Texture Overlay */
-body::after {
-    content: "";
+  /* NAV */
+  nav {
     position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    opacity: 0.04;
-    pointer-events: none;
-    z-index: 9999;
-}
-
-/* 3. Layout Framework */
-.container {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 clamp(1.5rem, 5vw, 5rem);
-}
-
-section {
-    padding: var(--section-gap) 0;
-}
-
-/* 4. Typography Design */
-h1, h2, h3, h4 {
-    font-weight: 400;
-    line-height: 1.1;
-}
-
-.hindi { font-family: var(--font-hindi); }
-
-.eyebrow {
-    font-size: clamp(0.65rem, 1vw, 0.75rem);
-    text-transform: uppercase;
-    letter-spacing: 0.4em;
-    font-weight: 600;
-    color: var(--gold-temple);
-    display: block;
-    margin-bottom: 1.5rem;
-}
-
-.display-title {
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    font-family: var(--font-display);
-    margin-bottom: 2rem;
-}
-
-.serif-desc {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: clamp(1.1rem, 2vw, 1.6rem);
-    color: var(--text-muted);
-}
-
-/* Section intro block — centered heading group above card grids */
-.section-intro {
-    text-align: center;
-    margin-bottom: clamp(3rem, 6vw, 6rem); /* Fluid so it tightens on mobile */
-}
-
-/* Mobile nav CTA margin */
-.mobile-cta {
-    margin-top: 2rem;
-}
-
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    padding: 2.5rem 0;
-    transition: all 0.6s var(--ease-out);
-}
-
-header.scrolled {
-    padding: 1rem 0;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid rgba(200, 151, 58, 0.15);
-}
-
-.nav-wrapper {
+    top: 0; left: 0; right: 0;
+    z-index: 100;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
-}
-
-.nav-logo {
-    display: flex;
-    align-items: center;
-    gap: clamp(0.6rem, 2vw, 1.2rem); /* Shrinks on narrow screens */
-    text-decoration: none;
-    color: inherit;
-}
-
-.nav-logo img {
-    /* clamp(min, preferred, max)
-       - min: 36px  → absolute smallest the logo can be
-       - preferred: 8vw → scales with viewport (444px screen → 35px, 555px → 44px, 1024px → 82px)
-       - max: 52px  → caps on desktop so it stays elegant */
-    height: clamp(36px, 8vw, 52px);
-    width: auto;           /* Always maintain aspect ratio */
-    flex-shrink: 0;        /* Prevent the image being squished by flex layout */
-    transition: transform 0.6s var(--ease-out);
-    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.1));
-}
-
-.nav-logo:hover img { transform: rotate(12deg) scale(1.1); }
-
-/* Logo text — fluid sizes using clamp */
-.nav-logo .hindi { font-size: clamp(1.1rem, 4vw, 1.6rem); display: block; line-height: 0.9; }
-.nav-logo .latin { font-size: clamp(0.5rem, 1.2vw, 0.6rem); letter-spacing: 0.4em; text-transform: uppercase; font-weight: 600; }
-
-.nav-links {
-    display: flex;
-    gap: 3.5rem;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: inherit;
-    font-size: 0.7rem;
+    padding: 1rem 3rem;
+    background: rgba(31,77,54,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,164,93,0.3);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .nav-logo-icon {
+    width: 40px; height: 40px;
+  }
+  .nav-logo-text {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
     font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    line-height: 1.1;
+  }
+  .nav-logo-sub {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.55rem;
+    font-weight: 300;
+    color: rgba(200,164,93,0.7);
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    letter-spacing: 0.25em;
+    display: block;
+  }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgba(250,247,242,0.85);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--forest);
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 2px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-light); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
     position: relative;
-    padding: 0.5rem 0;
-    opacity: 0.8;
-    transition: opacity 0.3s;
-}
-
-.nav-links a:hover { opacity: 1; }
-
-.nav-links a::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 1px;
-    background: var(--gold-temple);
-    transition: all 0.4s var(--ease-out);
-    transform: translateX(-50%);
-}
-
-.nav-links a:hover::after { width: 100%; }
-
-/* 6. Hero Component - Enhanced Immersive */
-.hero {
-    height: 100vh;
     display: flex;
     align-items: center;
-    position: relative;
-    background-color: var(--black-deep);
+    justify-content: center;
     overflow: hidden;
-}
-
-.hero-media {
+    background: var(--forest);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(200,164,93,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(217,119,6,0.08) 0%, transparent 50%),
+      linear-gradient(160deg, #0d2a1c 0%, #1F4D36 45%, #162d22 100%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0;
+    opacity: 0.04;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(200,164,93,1) 39px, rgba(200,164,93,1) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(200,164,93,1) 39px, rgba(200,164,93,1) 40px);
+  }
+  .hero-mandala {
     position: absolute;
-    inset: 0;
-    z-index: 1;
-}
-
-.hero-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.7;
-    transform: scale(1.1);
-    transition: transform 10s linear; /* Ken Burns Effect */
-}
-
-.hero.active .hero-media img {
-    transform: scale(1.2) rotate(1deg);
-}
-
-.hero-media::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, 
-        rgba(10,21,10,0.3) 0%, 
-        rgba(10,21,10,0.6) 50%, 
-        rgba(10,21,10,0.9) 100%);
-}
-
-.hero-content {
+    right: -120px; top: 50%;
+    transform: translateY(-50%);
+    width: 700px; height: 700px;
+    opacity: 0.06;
+  }
+  .hero-content {
     position: relative;
     z-index: 2;
-    color: var(--white);
-}
-
-.hero-content h1 {
-    font-size: clamp(4rem, 12vw, 10rem);
-    margin-bottom: -1rem;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 1.2s var(--ease-out) 0.5s;
-}
-
-.hero.active h1 {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 7. Gold Accent Ticker */
-.gold-ticker {
-    background: var(--gold-temple);
-    color: var(--black-deep);
-    padding: 1.5rem 0;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.ticker-track {
-    display: flex;
-    animation: ticker 60s linear infinite;
-    white-space: nowrap;
-}
-
-.ticker-item {
-    font-size: clamp(2rem, 4vw, 4rem);
-    font-family: var(--font-display);
-    margin-right: 6rem;
-    opacity: 0.85;
-}
-
-@keyframes ticker {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-/* 8. Cards & Visual Components (Refined) */
-.grid-system {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 2.5rem;
-}
-
-.feature-card {
-    grid-column: span 4;
-    background: var(--white);
-    padding: 4rem;
-    border-radius: var(--radius-sm);
-    border: 1px solid rgba(200, 151, 58, 0.08);
-    position: relative;
-    transition: all 0.6s var(--ease-out);
-    overflow: hidden;
-}
-
-.feature-card::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 2px;
-    background: var(--gold-temple);
-    transform: scaleX(0);
-    transition: transform 0.6s var(--ease-out);
-    transform-origin: left;
-}
-
-.feature-card:hover {
-    transform: translateY(-15px);
-    box-shadow: 0 40px 80px rgba(26, 58, 26, 0.1);
-}
-
-.feature-card:hover::before {
-    transform: scaleX(1);
-}
-
-.feature-card .icon {
-    font-size: 3rem;
-    margin-bottom: 2.5rem;
-    display: block;
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.05));
-}
-
-/* 9. Temple Sections (Overlap Layout) */
-.overlap-row {
-    display: flex;
-    align-items: center;
-    gap: clamp(2rem, 8vw, 10rem);
-    margin-bottom: var(--section-gap);
-}
-
-.overlap-media {
-    flex: 1.2;
-    height: clamp(450px, 45vw, 750px);
-    position: relative;
-}
-
-.overlap-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: var(--radius-sm);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-}
-
-.overlap-media::before {
-    content: "";
-    position: absolute;
-    inset: 2rem -2rem -2rem 2rem;
-    border: 1px solid var(--gold-temple);
-    z-index: -1;
+    text-align: center;
+    padding: 0 2rem;
+    max-width: 900px;
+    animation: fadeUp 1.2s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
     opacity: 0.5;
-}
+  }
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    color: var(--ivory);
+    line-height: 1.05;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.5rem;
+  }
+  .hero-title-gold { color: var(--gold); }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(250,247,242,0.65);
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.02em;
+  }
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-weight: 400;
+    color: rgba(200,164,93,0.8);
+    margin-bottom: 3rem;
+    letter-spacing: 0.05em;
+  }
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--text-dark);
+    padding: 0.9rem 2.2rem;
+    border: none;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.25s;
+    border-radius: 2px;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--ivory);
+    padding: 0.9rem 2.2rem;
+    border: 1px solid rgba(250,247,242,0.3);
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.25s;
+    border-radius: 2px;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: rgba(200,164,93,0.5);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: scrollBounce 2s ease-in-out infinite;
+  }
+  @keyframes scrollBounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(200,164,93,0.5), transparent);
+  }
 
-.overlap-text {
-    flex: 1;
-}
+  /* SECTION COMMON */
+  section { padding: 6rem 3rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1; max-width: 60px; height: 1px;
+    background: var(--saffron); opacity: 0.4;
+  }
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 600;
+    color: var(--forest);
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .section-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-width: 600px;
+  }
+  .gold-divider {
+    width: 80px; height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 1.5rem 0;
+  }
 
-/* 10. Buttons - Premium State */
-.cta-btn {
-    padding: 1.2rem 3.5rem;
-    background: var(--gold-temple);
-    color: var(--white);
+  /* ABOUT */
+  .about-section {
+    background: var(--ivory);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-img-frame {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 100%);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .about-img-overlay {
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L35 20 L50 20 L38 30 L43 45 L30 35 L17 45 L22 30 L10 20 L25 20 Z' fill='none' stroke='rgba(200,164,93,0.15)' stroke-width='1'/%3E%3C/svg%3E") repeat;
+  }
+  .about-img-tree {
+    z-index: 1; opacity: 0.9;
+  }
+  .about-badge {
+    position: absolute;
+    bottom: -1.5rem; right: -1.5rem;
+    width: 140px; height: 140px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    box-shadow: 0 0 0 8px var(--ivory), 0 0 0 10px var(--gold);
+  }
+  .about-badge-num {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1;
+  }
+  .about-badge-text {
+    font-size: 0.55rem;
+    font-weight: 500;
+    color: var(--forest);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .about-pillars {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-top: 2rem;
+  }
+  .pillar {
+    padding: 1.25rem;
+    border: 1px solid rgba(200,164,93,0.2);
+    border-radius: 4px;
+    background: rgba(200,164,93,0.04);
+    transition: all 0.3s;
+  }
+  .pillar:hover {
+    border-color: var(--gold);
+    background: rgba(200,164,93,0.08);
+  }
+  .pillar-icon {
+    font-size: 1.5rem; margin-bottom: 0.5rem;
+  }
+  .pillar-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--forest);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+  }
+  .pillar-text {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* SERVICES */
+  .services-section {
+    background: var(--forest);
+    position: relative;
+    overflow: hidden;
+  }
+  .services-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      45deg, transparent, transparent 30px,
+      rgba(200,164,93,0.02) 30px, rgba(200,164,93,0.02) 31px
+    );
+  }
+  .services-section .section-title { color: var(--ivory); }
+  .services-section .section-desc { color: rgba(250,247,242,0.6); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .service-card {
+    background: rgba(250,247,242,0.04);
+    border: 1px solid rgba(200,164,93,0.2);
+    border-radius: 4px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.35s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(200,164,93,0);
+    transition: all 0.35s;
+  }
+  .service-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-6px);
+    background: rgba(200,164,93,0.06);
+  }
+  .service-icon {
+    width: 64px; height: 64px;
+    margin: 0 auto 1.25rem;
+    background: rgba(200,164,93,0.12);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.75rem;
+    border: 1px solid rgba(200,164,93,0.2);
+    transition: all 0.35s;
+  }
+  .service-card:hover .service-icon {
+    background: rgba(200,164,93,0.2);
+    border-color: var(--gold);
+  }
+  .service-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+  .service-desc {
+    font-size: 0.8rem;
+    color: rgba(250,247,242,0.55);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+  .service-link {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     text-decoration: none;
+    display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: all 0.35s;
+  }
+  .service-card:hover .service-link { opacity: 1; transform: translateY(0); }
+
+  /* POOJAS */
+  .poojas-section { background: var(--beige); }
+  .poojas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+  .pooja-card {
+    background: var(--ivory);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(200,164,93,0.15);
+    transition: all 0.3s;
+  }
+  .pooja-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(31,77,54,0.12); }
+  .pooja-card-header {
+    background: var(--forest);
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+  }
+  .pooja-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+  }
+  .pooja-duration {
+    font-size: 0.7rem;
+    color: rgba(250,247,242,0.5);
+    letter-spacing: 0.1em;
+  }
+  .pooja-card-body { padding: 1.5rem; }
+  .pooja-price {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 0.75rem;
+  }
+  .pooja-price span {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+  .pooja-benefit {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .pooja-tags {
+    display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.25rem;
+  }
+  .pooja-tag {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    background: rgba(31,77,54,0.08);
+    color: var(--forest);
+  }
+  .btn-book {
+    width: 100%;
+    padding: 0.7rem;
+    background: var(--forest);
+    color: var(--gold);
+    border: none;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+  .btn-book:hover { background: var(--forest-light); }
+
+  /* TOURS */
+  .tours-section { background: var(--ivory); }
+  .tours-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .tour-card {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    border: 1px solid rgba(200,164,93,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .tour-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(31,77,54,0.1); border-color: var(--gold); }
+  .tour-img {
+    background: linear-gradient(135deg, var(--forest) 0%, #2a6649 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+    min-height: 180px;
+    position: relative;
+  }
+  .tour-days-badge {
+    position: absolute; top: 1rem; left: 1rem;
+    background: var(--gold);
+    color: var(--forest);
+    font-family: 'Cinzel', serif;
     font-size: 0.7rem;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.3em;
-    display: inline-block;
-    transition: all 0.5s var(--ease-out);
-    border: none;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+  .tour-info { padding: 1.5rem; background: var(--ivory); }
+  .tour-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.03em;
+  }
+  .tour-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .tour-meta {
+    display: flex; flex-direction: column; gap: 0.35rem;
+    margin-bottom: 1rem;
+  }
+  .tour-meta-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.72rem;
+    color: var(--text-mid);
+  }
+  .tour-meta-icon { font-size: 0.85rem; }
+  .tour-price {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--saffron);
+    margin-bottom: 0.75rem;
+  }
+  .tour-price small {
+    font-size: 0.65rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* GOSHALA */
+  .goshala-section {
+    background: linear-gradient(135deg, #2d1a08 0%, #3d2510 50%, #2d1a08 100%);
+    position: relative; overflow: hidden;
+  }
+  .goshala-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(200,164,93,0.15) 0%, transparent 60%);
+  }
+  .goshala-section .section-title { color: var(--gold); }
+  .goshala-section .section-desc { color: rgba(250,247,242,0.6); }
+  .goshala-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+  .goshala-seva-list { list-style: none; margin-bottom: 2rem; }
+  .goshala-seva-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(200,164,93,0.1);
+  }
+  .seva-icon {
+    width: 40px; height: 40px;
+    background: rgba(200,164,93,0.1);
+    border: 1px solid rgba(200,164,93,0.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .seva-text { font-size: 0.85rem; color: rgba(250,247,242,0.75); line-height: 1.5; }
+  .seva-text strong { color: var(--gold); font-weight: 500; display: block; }
+  .goshala-donate-cards {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .donate-card {
+    background: rgba(200,164,93,0.06);
+    border: 1px solid rgba(200,164,93,0.2);
+    border-radius: 4px;
+    padding: 1.5rem;
+    text-align: center;
     cursor: pointer;
+    transition: all 0.3s;
+  }
+  .donate-card:hover { border-color: var(--gold); background: rgba(200,164,93,0.12); }
+  .donate-amount {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.35rem;
+  }
+  .donate-label {
+    font-size: 0.7rem;
+    color: rgba(250,247,242,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .donate-impact {
+    font-size: 0.75rem;
+    color: rgba(250,247,242,0.65);
+    line-height: 1.5;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials-section { background: var(--beige); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .testimonial-card {
+    background: var(--ivory);
+    border-radius: 4px;
+    padding: 2rem;
+    border: 1px solid rgba(200,164,93,0.12);
     position: relative;
-    z-index: 1;
-}
+    transition: all 0.3s;
+  }
+  .testimonial-card:hover { border-color: rgba(200,164,93,0.4); }
+  .testimonial-quote-mark {
+    font-family: 'Cinzel', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    opacity: 0.2;
+    line-height: 0.8;
+    margin-bottom: 1rem;
+  }
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+  .testimonial-author {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .author-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--forest);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .author-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--forest);
+  }
+  .author-city { font-size: 0.7rem; color: var(--text-muted); }
+  .testimonial-stars { color: var(--gold); font-size: 0.75rem; margin-bottom: 0.75rem; }
 
-.cta-btn::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--forest-deep);
-    z-index: -1;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.5s var(--ease-out);
-}
-
-.cta-btn:hover {
-    color: var(--white);
-    letter-spacing: 0.4em;
-}
-
-.cta-btn:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-}
-
-/* 11. Reveal Animations - Higher Precision */
-[data-reveal] {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 1.2s var(--ease-out), transform 1s var(--ease-out);
-}
-
-[data-reveal].active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 12. Footer Enhancements */
-footer {
-    padding: clamp(5rem, 10vw, 10rem) 0 4rem;
-    background-color: var(--black-deep);
-    color: var(--white);
+  /* DONATION CTA */
+  .donation-section {
+    background: var(--forest);
+    text-align: center;
     position: relative;
     overflow: hidden;
-}
-
-footer::before {
-    content: "अमृत छाया";
-    position: absolute;
-    bottom: -10%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: var(--font-hindi);
-    font-size: 30vw;
-    color: rgba(255, 255, 255, 0.02);
-    white-space: nowrap;
-    pointer-events: none;
-}
-
-/* Footer Grid Layout */
-.footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 2fr;
-    gap: 3rem;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    padding-bottom: clamp(3rem, 6vw, 6rem);
-}
-
-.footer-hindi {
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    margin-bottom: 1rem;
-}
-
-.footer-tagline {
-    opacity: 0.6;
-    font-size: 0.9rem;
-}
-
-.footer-eyebrow {
-    color: var(--white);
-}
-
-.footer-list {
-    list-style: none;
-    opacity: 0.7;
-    font-size: 0.9rem;
-}
-
-.footer-list li {
-    margin-bottom: 0.8rem;
-}
-
-.footer-list a {
-    color: inherit;
-    text-decoration: none;
-    transition: opacity 0.3s;
-}
-
-.footer-list a:hover {
-    opacity: 1;
-}
-
-.footer-connect {
-    text-align: right;
-}
-
-.footer-email {
-    font-size: clamp(0.95rem, 2vw, 1.2rem);
-    color: var(--gold-warm);
-    word-break: break-all;
-}
-
-.footer-jai {
-    margin-top: 1.5rem;
-    font-weight: 700;
-}
-
-/* 13. Mobile Navigation & Toggle */
-.mobile-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 6px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 2000;
-    padding: 10px;
-}
-
-.mobile-toggle span {
-    display: block;
-    width: 28px;
-    height: 2px;
-    background: var(--gold-temple);
-    transition: all 0.4s var(--ease-out);
-    transform-origin: center;
-}
-
-/* Hamburger Animation */
-.mobile-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-.mobile-toggle.active span:nth-child(2) { opacity: 0; }
-.mobile-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-.mobile-nav {
-    position: fixed;
-    inset: 0;
-    background: var(--black-deep);
-    z-index: 1500;
+  }
+  .donation-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(200,164,93,0.15) 0%, transparent 60%);
+  }
+  .donation-section .section-title { color: var(--ivory); text-align: center; }
+  .donation-section .section-label { justify-content: center; }
+  .donation-section .section-label::after { display: none; }
+  .donation-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    color: rgba(250,247,242,0.6);
+    margin: 1rem auto 3rem;
+    max-width: 500px;
+    line-height: 1.7;
+  }
+  .donation-btns {
     display: flex;
     justify-content: center;
-    align-items: center;
-    transform: translateX(100%);
-    transition: transform 0.6s var(--ease-out);
-}
-
-.mobile-nav.active { transform: translateX(0); }
-
-.mobile-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2.5rem;
-}
-
-.mobile-links a {
-    color: var(--white);
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-family: var(--font-display);
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-donate {
+    padding: 1rem 2rem;
+    border-radius: 2px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.4s var(--ease-out);
-}
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .btn-donate-primary {
+    background: var(--gold);
+    color: var(--text-dark);
+    border: none;
+  }
+  .btn-donate-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-donate-outline {
+    background: transparent;
+    color: var(--ivory);
+    border: 1px solid rgba(250,247,242,0.3);
+  }
+  .btn-donate-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .donation-stats {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(200,164,93,0.15);
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    color: rgba(250,247,242,0.45);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
 
-.mobile-nav.active .mobile-links a {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Staggered animation for mobile links */
-.mobile-nav.active .mobile-links a:nth-child(1) { transition-delay: 0.2s; }
-.mobile-nav.active .mobile-links a:nth-child(2) { transition-delay: 0.3s; }
-.mobile-nav.active .mobile-links a:nth-child(3) { transition-delay: 0.4s; }
-.mobile-nav.active .mobile-links a:nth-child(4) { transition-delay: 0.5s; }
-.mobile-nav.active .mobile-links a:nth-child(5) { transition-delay: 0.6s; }
-
-.mobile-footer {
-    position: absolute;
-    bottom: 4rem;
-    text-align: center;
-    width: 100%;
-    color: var(--gold-warm);
-    opacity: 0.6;
-}
-
-/* ==========================================================
-   HOTEL CARD COMPONENTS
-   ========================================================== */
-
-/* Hotels section header — side-by-side heading + CTA button */
-.hotels-header {
+  /* FOOTER */
+  footer {
+    background: #0a1f14;
+    padding: 4rem 3rem 2rem;
+    color: rgba(250,247,242,0.5);
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  .footer-brand {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .footer-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: rgba(250,247,242,0.45);
+    line-height: 1.7;
+  }
+  .footer-heading {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-links a {
+    font-size: 0.8rem;
+    color: rgba(250,247,242,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid rgba(200,164,93,0.1);
+    padding-top: 2rem;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 6rem;
-    gap: 2rem;
-    flex-wrap: wrap; /* On narrow screens, wraps the button below the heading */
-}
+    align-items: center;
+  }
+  .footer-copy { font-size: 0.72rem; }
+  .whatsapp-fab {
+    position: fixed;
+    bottom: 2rem; right: 2rem;
+    z-index: 200;
+    width: 56px; height: 56px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+  }
+  .whatsapp-fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
 
-/* The outline variant of the CTA button (used for "View All Hotels") */
-.cta-outline {
-    background: transparent;
-    color: var(--gold-temple);
-    border: 1px solid var(--gold-temple);
-    white-space: nowrap;  /* Prevents button text from line-wrapping mid-word */
-    flex-shrink: 0;       /* Prevents it from being squished by the heading */
-}
-
-.cta-outline:hover {
-    color: var(--white);
-}
-
-/* Hotel cards take up half the grid (6 of 12 columns) */
-.hotel-card {
-    grid-column: span 6;
-    padding: 0;
-    overflow: hidden;
-}
-
-/* The image wrapper inside hotel cards */
-.card-img-wrap {
-    height: clamp(260px, 28vw, 400px); /* Fluid height so image never crunches */
-    overflow: hidden;
-}
-
-.card-img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s var(--ease-out);
-}
-
-.hotel-card:hover .card-img-wrap img {
-    transform: scale(1.05); /* Subtle Ken-Burns on hover */
-}
-
-.card-body {
-    padding: clamp(1.5rem, 3vw, 3rem); /* Fluid inner padding */
-}
-
-.card-title {
-    font-size: clamp(1.4rem, 2.5vw, 2rem);
-    margin-bottom: 1rem;
-}
-
-.card-desc {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-}
-
-.card-price {
-    margin-top: 2rem;
-    font-weight: 700;
-    color: var(--gold-temple);
-}
-
-/* ==========================================================
-   RESPONSIVE OVERRIDES
-   
-   Strategy: Mobile-first thinking with max-width breakpoints.
-   Think of it like TV channels — if screen is ≤1024px, channel 1.
-   If ≤768px, channel 2. If ≤480px, channel 3.
-   Each channel adds/overrides styles for that screen width.
-   ========================================================== */
-
-/* ── BREAKPOINT 1: Tablet & Small Laptop (≤1024px) ────────── */
-@media (max-width: 1024px) {
-    :root {
-        /* Reduce the big vertical gaps on tablet */
-        --section-gap: 6rem;
-    }
-
-    /* Hide desktop nav, show hamburger */
-    .desktop-only  { display: none; }
-    .nav-links     { display: none; }
-    .mobile-toggle { display: flex; }
-
-    /* Pooja cards: 3-col grid → single column stack */
-    .grid-system   { grid-template-columns: 1fr; gap: 2rem; }
-    .feature-card  { grid-column: span 12; padding: 2.5rem; }
-
-    /* Hotel cards: from 6/12 → full width on tablet */
-    .hotel-card    { grid-column: span 12; }
-
-    /* Hotels header: flex-wrap kicks in, button moves below heading */
-    .hotels-header { margin-bottom: 3rem; }
-
-    /* Overlap sections: side-by-side → stacked */
-    .overlap-row            { flex-direction: column !important; text-align: center; }
-    .overlap-media          { width: 100%; height: clamp(300px, 50vw, 450px); }
-    .overlap-media::before  { display: none; } /* Hide decorative border offset */
-
-    /* Footer: 4-col grid → 2-col grid on tablet */
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    /* Brand spans full width, Connect section left-aligns */
-    .footer-brand   { grid-column: span 2; }
-    .footer-connect { text-align: left; }
-}
-
-/* ── BREAKPOINT 2: Mobile Phone (≤768px) ──────────────────── */
-@media (max-width: 768px) {
-
-    /* Nav logo text slightly smaller */
-    .nav-logo .hindi { font-size: 1.4rem; }
-
-    /* Hero: make sure the big Hindi h1 doesn't overflow */
-    .hero-content h1 {
-        font-size: clamp(3rem, 15vw, 5rem);
-    }
-
-    /* Hero descriptive paragraph: remove fixed max-width */
-    .hero-content p {
-        max-width: 100% !important;
-    }
-
-    /* Hero CTA button: full-width on mobile */
-    .hero-content .cta-btn {
-        width: 100%;
-        text-align: center;
-    }
-
-    /* Ticker: smaller text to avoid huge scroll on phone */
-    .ticker-item { font-size: clamp(1.4rem, 5vw, 2.5rem); }
-
-    /* Hotels header: stack vertically, button full-width */
-    .hotels-header {
-        flex-direction: column;
-        align-items: flex-start;
-        margin-bottom: 2.5rem;
-    }
-
-    .hotels-header .cta-btn {
-        width: 100%;
-        text-align: center;
-    }
-
-    /* Footer: single column stacking on phone */
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-
-    .footer-brand   { grid-column: span 1; }
-    .footer-connect { text-align: left; }
-}
-
-/* ── BREAKPOINT 3: Small Phone (≤480px) ───────────────────── */
-@media (max-width: 480px) {
-    /* Tighten container edges on very small phones */
-    .container { padding: 0 1.2rem; }
-
-    /* Logo: compact */
-    .nav-logo .hindi { font-size: 1.2rem; }
-    .nav-logo .latin { display: none; } /* Hide sub-label, too cramped */
-
-    /* Section headings */
-    .display-title { font-size: clamp(1.8rem, 8vw, 2.5rem); }
-
-    /* Feature cards: tighter padding on very small screens */
-    .feature-card  { padding: 1.8rem; }
-
-    /* Card image heights */
-    .card-img-wrap { height: 220px; }
-
-    /* Card body padding */
-    .card-body     { padding: 1.5rem; }
-
-    /* All buttons full width on tiny phones */
-    .cta-btn       { width: 100%; text-align: center; }
-
-    /* Tighten overlap sections */
-    .overlap-text  { text-align: center; }
-    .overlap-text .cta-btn { margin-top: 2rem; }
-
-    /* Footer */
-    .footer-grid   { gap: 2rem; }
-}
+  /* Responsive mobile tweaks */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid, .goshala-content { grid-template-columns: 1fr; gap: 2.5rem; }
+    .services-grid { grid-template-columns: repeat(2,1fr); }
+    .poojas-grid { grid-template-columns: repeat(2,1fr); }
+    .tours-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .donation-stats { gap: 2rem; }
+    .goshala-donate-cards { grid-template-columns: 1fr; }
+  }
